@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.azure.storage.blob.BlobClient;
@@ -23,7 +24,7 @@ import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.example.demo.azure.CustomVisionProject; 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin(origins = "${FRONTEND_HOST:http://localhost:8000}")
 public class ImageController   
 {  
     @RequestMapping("/hello")
@@ -32,6 +33,15 @@ public class ImageController
         return "Hello World";  
     }
 
+    //@RequestMapping(value="/greeting",method=GET)
+    //public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+/*
+    @RequestMapping(value="/greeting",method=RequestMethod.GET)
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                String.format(template, name));
+    
+*/
     @RequestMapping(value = "/image", method = RequestMethod.POST)
     public ResponseEntity<String> posting(@RequestBody String data) throws IOException {
         String base64 = data.replace("data:image/png;base64,", "");
@@ -99,7 +109,4 @@ public class ImageController
         
     }
 }
-
-
-
 
