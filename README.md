@@ -1,1 +1,3 @@
 # faceRecognition
+- Add CI
+- 
